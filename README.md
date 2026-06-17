@@ -10,9 +10,12 @@ The Baselight MCP server lets AI assistants and other MCP clients reach that cat
 
 ## What's in this repo
 
-This repository hosts public metadata for the Baselight MCP server.
+This repository hosts public metadata for the Baselight MCP server alongside a one-click installable bundle.
+
+## Contents
 
 - [`registry/server.json`](./registry/server.json) — the [Model Context Protocol registry](https://modelcontextprotocol.io) entry that describes the remote server, its endpoint, and required headers.
+- [`mcpb/`](./mcpb/) — the Baselight [MCP Bundle (.mcpb)](https://github.com/modelcontextprotocol/mcpb), a packaged proxy to the remote server for MCPB-compatible hosts such as Claude Desktop. Released via GitHub Releases.
 
 The Baselight MCP server itself is hosted at `https://api.baselight.app/mcp` — there is no server code to install from this repo.
 
@@ -50,7 +53,7 @@ Settings → Connectors → Add custom connector:
 - **URL:** `https://api.baselight.app/mcp`
 - **Authentication:** OAuth
 
-For other clients (Gemini CLI, LibreChat, Smithery, the free-tier Claude Desktop extension, etc.), see the full guide: <https://baselight.ai/docs/connecting-to-the-baselight-mcp-server/>.
+For other clients (Gemini CLI, LibreChat, Smithery, etc.), see the full guide: <https://baselight.ai/docs/connecting-to-the-baselight-mcp-server/>.
 
 ## Links
 

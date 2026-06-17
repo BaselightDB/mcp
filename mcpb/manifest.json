@@ -1,0 +1,72 @@
+{
+  "manifest_version": "0.4",
+  "name": "baselight",
+  "display_name": "Baselight",
+  "version": "1.0.0",
+  "description": "Baselight brings instant access to high-quality structured data across finance, crypto, sports, health, and global statistics. Ask questions, explore insights, and discover trends with an open, community-driven data platform.",
+  "author": {
+    "name": "Finisterra Labs",
+    "url": "https://finisterra.ai/",
+    "email": "hello@finisterra.ai"
+  },
+  "homepage": "https://baselight.app",
+  "documentation": "https://baselight.ai/docs",
+  "icon": "icon.png",
+  "icons": [
+    { "src": "icons/icon-512.png", "size": "512x512" },
+    { "src": "icons/icon-256.png", "size": "256x256" },
+    { "src": "icons/icon-128.png", "size": "128x128" },
+    { "src": "icons/icon-32.png", "size": "32x32" },
+    { "src": "icons/icon-16.png", "size": "16x16" }
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "node_modules/mcp-remote/dist/proxy.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/node_modules/mcp-remote/dist/proxy.js",
+        "https://api.baselight.app/mcp",
+        "--header",
+        "x-api-key:${user_config.api_key}"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BaselightDB/mcp.git"
+  },
+  "support": "https://github.com/BaselightDB/mcp/issues",
+  "keywords": [
+    "data",
+    "datasets",
+    "sql",
+    "analytics",
+    "finance",
+    "crypto",
+    "sports",
+    "climate",
+    "demographics",
+    "statistics"
+  ],
+  "privacy_policies": [
+    "https://baselight.ai/privacy"
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
+  },
+  "tools_generated": true,
+  "prompts_generated": true,
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "API Key",
+      "description": "Baselight API key. Generate one at https://baselight.app under Account Settings → Integrations.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}

@@ -1,0 +1,62 @@
+name: Release MCP Bundle
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g. v1.0.1)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        working-directory: mcpb
+        run: npm ci
+
+      - name: Stamp release version
+        working-directory: mcpb
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          VERSION="${INPUT_VERSION#v}"
+          export VERSION
+          echo "Stamping version $VERSION into manifest.json and package.json"
+          node -e '
+            const fs = require("fs");
+            const version = process.env.VERSION;
+            for (const file of ["manifest.json", "package.json"]) {
+              const json = JSON.parse(fs.readFileSync(file, "utf8"));
+              json.version = version;
+              fs.writeFileSync(file, JSON.stringify(json, null, 2) + "\n");
+            }
+          '
+
+      - name: Validate manifest
+        working-directory: mcpb
+        run: npx @anthropic-ai/mcpb validate manifest.json
+
+      - name: Package bundle
+        working-directory: mcpb
+        run: npm run pack
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: baselight-${{ inputs.version }}
+          path: mcpb/baselight.mcpb
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.version }}
+          files: mcpb/baselight.mcpb
+          generate_release_notes: true
