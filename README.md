@@ -15,7 +15,7 @@ This repository hosts public metadata for the Baselight MCP server alongside a o
 ## Contents
 
 - [`registry/server.json`](./registry/server.json) — the [Model Context Protocol registry](https://modelcontextprotocol.io) entry that describes the remote server, its endpoint, and required headers.
-- [`mcpb/`](./mcpb/) — the Baselight [MCP Bundle (.mcpb)](https://github.com/modelcontextprotocol/mcpb), a packaged proxy to the remote server for MCPB-compatible hosts such as Claude Desktop. Released via GitHub Releases.
+- [`mcpb/`](./mcpb/) — the Baselight [MCP Bundle (.mcpb)](https://github.com/modelcontextprotocol/mcpb), a packaged proxy to the remote server for MCPB-compatible hosts such as Claude Desktop. Download the latest build directly: [`baselight.mcpb`](https://github.com/BaselightDB/mcp/releases/latest/download/baselight.mcpb).
 
 The Baselight MCP server itself is hosted at `https://api.baselight.app/mcp` — there is no server code to install from this repo.
 

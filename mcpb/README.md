@@ -6,12 +6,18 @@ The bundle is a thin proxy to the hosted Baselight MCP server at `https://api.ba
 
 ## Installing in Claude Desktop
 
-1. Download the latest `baselight.mcpb` from the [Releases page](https://github.com/BaselightDB/mcp/releases).
+1. Download the latest **[`baselight.mcpb`](https://github.com/BaselightDB/mcp/releases/latest/download/baselight.mcpb)** — this link always serves the newest release. (Browse all versions on the [Releases page](https://github.com/BaselightDB/mcp/releases).)
 2. Install it in any MCPB-compatible host. In **Claude Desktop**:
    - Open **Settings → Extensions**.
    - Drag `baselight.mcpb` onto Claude.
    - When prompted, enter your **API key** (see below).
    - Enable the extension with the toggle.
+
+Prefer the command line?
+
+```bash
+curl -L -o baselight.mcpb https://github.com/BaselightDB/mcp/releases/latest/download/baselight.mcpb
+```
 
 > Other MCPB-compatible hosts follow a similar install-and-configure flow. See the [full connection guide](https://baselight.ai/docs/connecting-to-the-baselight-mcp-server/) for client-specific instructions.
 
