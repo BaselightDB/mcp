@@ -2,11 +2,6 @@ name: Release MCP Bundle
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version (e.g. 1.0.1 or v1.0.1)'
-        required: true
-        type: string
 
 permissions:
   contents: write
@@ -25,26 +20,23 @@ jobs:
         working-directory: mcpb
         run: npm ci
 
-      - name: Stamp release version
+      - name: Read release version
         id: version
         working-directory: mcpb
-        env:
-          INPUT_VERSION: ${{ inputs.version }}
         run: |
-          VERSION="${INPUT_VERSION#v}"
+          VERSION=$(node -p "require('./manifest.json').version")
           echo "number=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
-          export VERSION
-          echo "Stamping version $VERSION into manifest.json and package.json"
-          node -e '
-            const fs = require("fs");
-            const version = process.env.VERSION;
-            for (const file of ["manifest.json", "package.json"]) {
-              const json = JSON.parse(fs.readFileSync(file, "utf8"));
-              json.version = version;
-              fs.writeFileSync(file, JSON.stringify(json, null, 2) + "\n");
-            }
-          '
+          echo "Releasing version ${VERSION}"
+
+      - name: Ensure tag does not exist
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "::error::Tag ${TAG} already exists — bump the version in mcpb/manifest.json before releasing."
+            exit 1
+          fi
+          echo "Tag ${TAG} is available."
 
       - name: Validate manifest
         working-directory: mcpb
