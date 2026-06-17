@@ -1,0 +1,11 @@
+{
+  "name": "baselight-mcp-extension",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "pack": "npx @anthropic-ai/mcpb pack . baselight.mcpb"
+  },
+  "dependencies": {
+    "mcp-remote": "0.1.38"
+  }
+}
