@@ -53,7 +53,7 @@ Settings → Connectors → Add custom connector:
 - **URL:** `https://api.baselight.app/mcp`
 - **Authentication:** OAuth
 
-For other clients (Gemini CLI, LibreChat, Smithery, the free-tier Claude Desktop extension, etc.), see the full guide: <https://baselight.ai/docs/connecting-to-the-baselight-mcp-server/>.
+For other clients (Gemini CLI, LibreChat, Smithery, etc.), see the full guide: <https://baselight.ai/docs/connecting-to-the-baselight-mcp-server/>.
 
 ## Links
 

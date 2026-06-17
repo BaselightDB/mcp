@@ -4,7 +4,7 @@ A one-click [MCP Bundle (.mcpb)](https://github.com/modelcontextprotocol/mcpb) t
 
 The bundle is a thin proxy to the hosted Baselight MCP server at `https://api.baselight.app/mcp`, so there is nothing to host or run yourself.
 
-## Installing
+## Installing in Claude Desktop
 
 1. Download the latest `baselight.mcpb` from the [Releases page](https://github.com/BaselightDB/mcp/releases).
 2. Install it in any MCPB-compatible host. In **Claude Desktop**:
